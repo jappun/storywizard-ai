@@ -1,41 +1,13 @@
-# # prompt:
-# # write a 1 page story in the style of a third grader.
-# # here are some provided details you must use.
-# # the protagonist:
-# #   - name
-# #   - likes
-# #   - dislike
-# #   - personality/looks
-# # the setting:
-# # main conflict: 
-# # rising action(s):
-# # climax: 
-# # resolution: 
+# from google import genai
+import google.genai as genai
+import os
+from dotenv import load_dotenv
 
-# BEGINNING
-# setting
-place = ""
-place_details = ""
-# hero
-name = ""
-species = ""
-likes = ""
-dislikes = ""
-looks = ""
-personality = ""
-# conflict
-conflict = ""
 
-# MIDDLE
-rising = ""
-climax = ""
-
-# END
-falling = ""
-resolution = ""
+load_dotenv()
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 elements = {"place": "", "place_details": "", "name": "", "species": "", "likes":"", "dislikes":"", "looks":"", "personality":"", "conflict":"", "rising":"", "climax":"", "falling":"", "resolution":""}
-
 
 class PlotElement:
     def __init__(self, prompt, element):
@@ -43,6 +15,11 @@ class PlotElement:
         self.element = element
 
 
+# TODO: limit these
+# place -
+# main character
+# - name
+# - merge likes/dislikes/personality into fun facts
 element_questions = [
     PlotElement("place? ", "place"),
     PlotElement("place details?  ", "place_details"),
@@ -64,7 +41,7 @@ def build_story(element_questions):
     for pe in element_questions:
         elements[pe.element] = input(pe.prompt)
 
-    prompt = "Write a 1 page short story in the style of a third grader. " \
+    prompt = "Write a 500-word short story in the style of a third grader. " \
             "Come up with a title for it. " \
             "Ensure you use a basic and easy to follow plot structure. " \
             "Below are details on key plot elements you must use. " \
@@ -78,6 +55,13 @@ def build_story(element_questions):
             f"Falling actions: Now we wrap up our key story points. The lessons learned, the changes made, the problems solved. These are our falling actions: {elements['falling']}. " \
             f"Resolution: The story comes to an end like this: {elements['resolution']}."
 
-    print(prompt)
+    write_story(prompt)
+
+def write_story(prompt):
+    story = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=[prompt]
+    )
+    print(story.text)
 
 build_story(element_questions)
