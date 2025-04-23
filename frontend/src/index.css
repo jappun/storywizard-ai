@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --color-page-100: #fff4a3;
+}
