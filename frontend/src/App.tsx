@@ -1,11 +1,12 @@
 import { Frame } from "./components/Frame"
+import Sparkle from "./components/Sparkle"
 
 function App() {
-
   return (
-      <div className="bg-amber-100 w-screen h-screen">
-        <Frame />
-      </div>
+    <div className="bg-amber-100 min-h-screen p-8">
+      < Sparkle />
+      <Frame />
+    </div>
   )
 }
 

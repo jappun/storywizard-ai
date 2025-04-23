@@ -4,3 +4,35 @@
 @theme {
   --color-page-100: #fff4a3;
 }
+
+body, button {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='64' height='64'%3E%3Cpath fill='%23A855F7' stroke='%23A855F7' stroke-linecap='round' stroke-linejoin='round' stroke-width='20' d='M279.41 252.18L184.13 353.74a17.37 17.37 0 1 1-24.55-24.56L260 235l11.82 1.72Z'/%3E%3Cpolygon fill='%23FCD34D' stroke='%23FCD34D' stroke-linecap='round' stroke-linejoin='round' stroke-width='20' points='357.91 230.13 312.44 236.73 292.11 277.93 279.41 252.18 271.78 236.73 259.96 235.01 226.31 230.13 259.21 198.06 251.45 152.77 292.11 174.15 332.78 152.77 325.01 198.06 357.91 230.13'/%3E%3C/svg%3E") 0 0, auto;
+}
+
+
+.sparkle {
+  pointer-events: none;
+  position: fixed;
+  z-index: 9999;
+  background: radial-gradient(circle, #FCD34D 0%, transparent 70%);
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  animation: sparkle 0.8s ease-out forwards;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--distance)) scale(1.2);
+  }
+}
+
+
+button:not(:disabled):hover {
+  transform: scale(1.25);
+  transition: transform 0.2s ease;
+}
