@@ -6,10 +6,10 @@ import { Question } from './Question';
 const pages = [
   {
     title: "Setting",
-    wizardDialogue: "Let's set the scene for our magical story! Where does it take place?",
-    description: "The setting is where and when your story happens. It's like creating the world where your characters will live!",
+    wizardDialogue: "Let's set the scene for our story! Where does it take place?",
+    description: "The setting is where your story happens. It's where your characters will live!",
     questions: [
-      { key: "place", text: "Where does your story take place?" },
+      { key: "place", text: "Where does your story take place? A big city? A magical forest?" },
       { key: "place_details", text: "What does this place look like?" }
     ]
   },
@@ -19,17 +19,17 @@ const pages = [
     description: "The main character is the star of your story. They're the one who goes on the adventure!",
     questions: [
       { key: "name", text: "What is their name?" },
-      { key: "species", text: "What kind of creature are they?" },
-      { key: "looks", text: "What do they look like?" },
-      { key: "details", text: "Tell me something special about them!" }
+      { key: "species", text: "What type of creature are they? Human? Dragon? Something else?" },
+      { key: "looks", text: "How do they look? Are they tall and smart? Short and strong?" },
+      { key: "details", text: "What is something that makes your hero special?" }
     ]
   },
   {
     title: "Conflict",
     wizardDialogue: "Uh oh! What problem does our hero face?",
-    description: "The conflict is the big problem that your character needs to solve.",
+    description: "The conflict is the main problem that your character needs to solve.",
     questions: [
-      { key: "conflict", text: "What is the main problem in your story?" }
+      { key: "conflict", text: "What is the big problem in your story?" }
     ]
   },
   {
@@ -42,10 +42,10 @@ const pages = [
   },
   {
     title: "Climax",
-    wizardDialogue: "This is the most exciting part! How does your hero solve their problem?",
+    wizardDialogue: "This is the most exciting part! How does your hero finally solve the big problem?",
     description: "The climax is the most exciting part of the story where the hero faces their biggest challenge!",
     questions: [
-      { key: "climax", text: "How does your character solve their problem?" }
+      { key: "climax", text: "How does your character solve the problem?" }
     ]
   },
   {
@@ -61,7 +61,7 @@ const pages = [
     wizardDialogue: "Let's wrap up our story with a happy ending!",
     description: "The resolution is how your story ends. It's like tying a bow on a present!",
     questions: [
-      { key: "resolution", text: "How does your story end?" }
+      { key: "resolution", text: "How does your story end? Is it happily ever after? Does a new adventure await your hero?" }
     ]
   }
 ];

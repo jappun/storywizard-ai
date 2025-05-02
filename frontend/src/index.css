@@ -21,17 +21,6 @@ body, button {
   opacity: 1;
 }
 
-/* @keyframes sparkle {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg) scale(0.5);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--distance)) scale(1.2);
-  }
-} */
-
 
 button:not(:disabled):hover {
   transform: scale(1.25);
