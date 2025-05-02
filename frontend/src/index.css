@@ -13,14 +13,15 @@ body, button {
 .sparkle {
   pointer-events: none;
   position: fixed;
-  z-index: 9999;
-  background: radial-gradient(circle, #FCD34D 0%, transparent 70%);
+  width: 4px;
+  height: 4px;
   border-radius: 9999px;
-  transform: translate(-50%, -50%);
-  animation: sparkle 0.8s ease-out forwards;
+  z-index: 9999;
+  transition: background 0.3s ease, opacity 0.4s ease;
+  opacity: 1;
 }
 
-@keyframes sparkle {
+/* @keyframes sparkle {
   0% {
     opacity: 1;
     transform: translate(-50%, -50%) rotate(0deg) scale(0.5);
@@ -29,7 +30,7 @@ body, button {
     opacity: 0;
     transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--distance)) scale(1.2);
   }
-}
+} */
 
 
 button:not(:disabled):hover {
