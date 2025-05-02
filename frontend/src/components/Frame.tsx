@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Progress } from './Progress';
 import { Page } from './Page';
 import { Question } from './Question';
+import Next from './Next';
+import Back from './Back';
 
 const pages = [
   {
@@ -103,27 +105,11 @@ export const Frame = () => {
         ))}
         
         <div className="flex justify-between mt-8">
-          <button
-            onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
-            disabled={currentPage === 0}
-            className="px-6 py-2 bg-purple-500 text-white rounded-lg disabled:opacity-50"
-          >
-            Back
-          </button>
-          {isLastPage ? (
-            <button
-              className="px-6 py-2 bg-purple-500 text-white rounded-lg"
-            >
-              The End
-            </button>
-          ) : (
-            <button
-              onClick={() => setCurrentPage(prev => Math.min(pages.length - 1, prev + 1))}
-              className="px-6 py-2 bg-purple-500 text-white rounded-lg"
-            >
-              Next
-            </button>
-          )}
+          <Back onBack={() => setCurrentPage(prev => Math.max(0, prev - 1))} isFirstPage={currentPage === 0}/>
+          <Next onNext={() => {    
+              console.log('Answers so far:', answers);
+              setCurrentPage(prev => Math.min(pages.length - 1, prev + 1));
+          }}/>
         </div>
       </Page>
     </div>

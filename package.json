@@ -9,5 +9,8 @@
     "dev": "npm run dev -w frontend",
     "build": "npm run build -w frontend",
     "lint": "npm run lint -w frontend"
+  },
+  "dependencies": {
+    "react-router-dom": "^7.5.3"
   }
 }
