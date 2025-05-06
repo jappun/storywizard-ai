@@ -4,6 +4,8 @@ import { Page } from './Page';
 import { Question } from './Question';
 import Next from './Next';
 import Back from './Back';
+import WizardImage from '../assets/test.svg';
+
 
 const pages = [
   {
@@ -84,7 +86,9 @@ export const Frame = () => {
       <Progress currentPage={currentPage + 1} totalPages={pages.length} />
       
       <div className="flex items-center gap-6 mt-8 mb-8">
-        <div className="w-20 h-20 rounded-full border-4 border-purple-400 bg-white flex-shrink-0" />
+        {/* <div className="w-20 h-20 rounded-full border-4 border-purple-400 bg-white flex-shrink-0"> */}
+          <img src={WizardImage} alt="Wizard" className="object-contain rounded-full h-50 w-50 border-4 border-purple-400" />
+        {/* </div> */}
         <div className="bg-blue-100 p-6 rounded-lg flex-grow">
           <p className="text-blue-800 text-xl font-medium">{currentPageData.wizardDialogue}</p>
         </div>
@@ -106,7 +110,9 @@ export const Frame = () => {
         
         <div className="flex justify-between mt-8">
           <Back onBack={() => setCurrentPage(prev => Math.max(0, prev - 1))} isFirstPage={currentPage === 0}/>
-          <Next onNext={() => {    
+          <Next 
+              isLastPage={isLastPage} 
+              onNext={() => {    
               console.log('Answers so far:', answers);
               setCurrentPage(prev => Math.min(pages.length - 1, prev + 1));
           }}/>
