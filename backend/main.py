@@ -35,10 +35,11 @@ class StoryElements(BaseModel):
 @app.post("/generate")
 def generate_story(elements: StoryElements):
     prompt = f"""
-    Write a 500-word short story at a grade 5 reading level.
+    Write a 500-word short story suitable for an 8 year old to read.
     Come up with a title for it. Use a basic and easy plot structure. Write in plaintext, not markdown. Do not bold or italicize any words. 
     Fix small grammar and logic issues if needed, but keep the minimal possible corrections.
     Include all the provided elements as key points, but you may add some more details to make it more entertaining.
+    If you cannot confidently infer the hero's gender, use they/them pronouns.
 
     Setting: This story takes place in {elements.place}. {elements.place} looks like {elements.place_details}.
     Protagonist: This story is about {elements.name}, who is a {elements.species}. 
