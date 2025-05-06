@@ -37,8 +37,9 @@ class StoryElements(BaseModel):
 def generate_story(elements: StoryElements):
     prompt = f"""
     Write a 500-word short story in the style of a fifth grader. 
-    Come up with a title for it. Use a basic and easy plot structure.
-    Fix small grammar issues if needed.
+    Come up with a title for it. Use a basic and easy plot structure. Write in plaintext, do not bold or italicize any words. 
+    Fix small grammar and logic issues if needed, but keep the minimal possible corrections.
+    Include all the plot elements provide below.
 
     Setting: This story takes place in {elements.place}. {elements.place} looks like {elements.place_details}.
     Protagonist: This story is about {elements.name}, who is a {elements.species}. 
