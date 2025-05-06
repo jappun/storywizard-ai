@@ -27,7 +27,7 @@ const pages = [
       { key: "name", text: "What is their name?" },
       { key: "species", text: "What type of creature are they? A young girl? An old man? A dragon? Something else?" },
       { key: "looks", text: "How do they look? Are they tall and smart? Short and strong?" },
-      { key: "details", text: "What is something that makes your hero special?" }
+      // { key: "details", text: "What is something that makes your hero special?" }
     ]
   },
   {

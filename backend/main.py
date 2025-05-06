@@ -25,7 +25,7 @@ class StoryElements(BaseModel):
     name: str
     species: str
     looks: str
-    details: str
+    # details: str
     conflict: str
     rising: str
     climax: str
@@ -43,7 +43,7 @@ def generate_story(elements: StoryElements):
 
     Setting: This story takes place in {elements.place}. {elements.place} looks like {elements.place_details}.
     Protagonist: This story is about {elements.name}, who is a {elements.species}. 
-    They look like {elements.looks} and these are some extra details about them: {elements.details}.
+    They look like {elements.looks}.
     Conflict: The main problem our protagonist faces is: {elements.conflict}.
     Rising Action: {elements.rising}
     Climax: {elements.climax}
