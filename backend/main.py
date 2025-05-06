@@ -11,10 +11,9 @@ genai_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = FastAPI()
 
-# Allow frontend to connect to backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Set to frontend URL in production
+    allow_origins=["*"],  # !!! to frontend URL in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -36,10 +35,10 @@ class StoryElements(BaseModel):
 @app.post("/generate")
 def generate_story(elements: StoryElements):
     prompt = f"""
-    Write a 500-word short story in the style of a fifth grader. 
-    Come up with a title for it. Use a basic and easy plot structure. Write in plaintext, do not bold or italicize any words. 
+    Write a 500-word short story at a grade 5 reading level.
+    Come up with a title for it. Use a basic and easy plot structure. Write in plaintext, not markdown. Do not bold or italicize any words. 
     Fix small grammar and logic issues if needed, but keep the minimal possible corrections.
-    Include all the plot elements provide below.
+    Include all the provided elements as key points, but you may add some more details to make it more entertaining.
 
     Setting: This story takes place in {elements.place}. {elements.place} looks like {elements.place_details}.
     Protagonist: This story is about {elements.name}, who is a {elements.species}. 

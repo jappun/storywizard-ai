@@ -24,7 +24,7 @@ const pages = [
     description: "The main character is the star of your story. They're the one who goes on the adventure!",
     questions: [
       { key: "name", text: "What is their name?" },
-      { key: "species", text: "What type of creature are they? Human? Dragon? Something else?" },
+      { key: "species", text: "What type of creature are they? A young girl? An old man? A dragon? Something else?" },
       { key: "looks", text: "How do they look? Are they tall and smart? Short and strong?" },
       { key: "details", text: "What is something that makes your hero special?" }
     ]
@@ -74,6 +74,8 @@ const pages = [
 export const Frame = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [generatedStory, setGeneratedStory] = useState(null);
+
 
   const handleAnswer = (key: string, value: string) => {
     setAnswers(prev => ({ ...prev, [key]: value }));
@@ -84,7 +86,28 @@ export const Frame = () => {
 
   return (
     <div className="max-w-3xl mx-auto bg-white border-4 border-yellow-200 rounded-2xl p-6 mt-8">
-      <Progress currentPage={currentPage + 1} totalPages={pages.length} />
+      {/* {generatedStory && (
+        <div className="mt-12 p-6 bg-yellow-100 border-2 border-yellow-400 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold text-purple-700 mb-4">Your Story</h2>
+          <p className="whitespace-pre-line text-lg text-purple-900">{generatedStory}</p>
+        </div>
+      )} */}
+      {generatedStory ? ( 
+        (() => {
+          const lines = generatedStory.split("\n").filter(line => line.trim() !== "");
+          const title = lines[0];
+          const body = lines.slice(1).join("\n");
+  
+          return (
+            <div className="p-6 bg-yellow-100 border-2 border-yellow-400 rounded-lg shadow-md">
+              <h2 className="text-3xl font-bold text-purple-700 mb-4">{title}</h2>
+              <p className="whitespace-pre-line text-lg text-purple-900">{body}</p>
+            </div>
+          );
+        })()        
+        ) : (
+          <>
+          <Progress currentPage={currentPage + 1} totalPages={pages.length} />
       
       <div className="flex items-center gap-6 mt-8 mb-8">
         {/* <div className="w-20 h-20 rounded-full border-4 border-purple-400 bg-white flex-shrink-0"> */}
@@ -118,7 +141,7 @@ export const Frame = () => {
                   try {
                     const res = await axios.post("http://localhost:8000/generate", answers);
                     console.log("Generated story:", res.data.story);
-                    // todo show story in new page
+                    setGeneratedStory(res.data.story);
                   } catch (err) {
                     console.error("Error generating story:", err);
                   }
@@ -128,6 +151,10 @@ export const Frame = () => {
               }}/>
         </div>
       </Page>
+      </>
+
+        )}
+      
     </div>
   );
 };
