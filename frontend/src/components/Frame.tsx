@@ -5,6 +5,7 @@ import { Question } from './Question';
 import Next from './Next';
 import Back from './Back';
 import WizardImage from '../assets/test.svg';
+import axios from "axios";
 
 
 const pages = [
@@ -112,10 +113,19 @@ export const Frame = () => {
           <Back onBack={() => setCurrentPage(prev => Math.max(0, prev - 1))} isFirstPage={currentPage === 0}/>
           <Next 
               isLastPage={isLastPage} 
-              onNext={() => {    
-              console.log('Answers so far:', answers);
-              setCurrentPage(prev => Math.min(pages.length - 1, prev + 1));
-          }}/>
+              onNext={async () => {
+                if (isLastPage) {
+                  try {
+                    const res = await axios.post("http://localhost:8000/generate", answers);
+                    console.log("Generated story:", res.data.story);
+                    // todo show story in new page
+                  } catch (err) {
+                    console.error("Error generating story:", err);
+                  }
+                } else {
+                  setCurrentPage(prev => Math.min(pages.length - 1, prev + 1));
+                }
+              }}/>
         </div>
       </Page>
     </div>
